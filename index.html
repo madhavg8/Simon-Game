@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simon</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="controls-container">
+      <button id="theme-toggle" class="control-btn">🌙 Dark Mode</button>
+      <button id="sound-toggle" class="control-btn">🔊 Sound On</button>
+      <button id="leaderboard-btn" class="control-btn">🏆 Leaderboard</button>
+    </div>
+
+    <h1 id="level-title">Press A Key to Start</h1>
+    <h2 id="high-score">High Score: 0</h2>
+
+    <div class="container">
+      <div class="row">
+        <div type="button" id="green" class="btn green"></div>
+
+        <div type="button" id="red" class="btn red"></div>
+      </div>
+
+      <div class="row">
+        <div type="button" id="yellow" class="btn yellow"></div>
+        <div type="button" id="blue" class="btn blue"></div>
+      </div>
+    </div>
+
+    <div id="leaderboard-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>🏆 Top 5 Scores</h2>
+        <ul id="leaderboard-list"></ul>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="game.js"></script>
+    <footer>
+      <h5 style="color: white">Designed by Madhav Gupta !</h5>
+    </footer>
+  </body>
+</html>
