@@ -6,6 +6,7 @@ var level = 0;
 var highScore = localStorage.getItem("simonHighScore") || 0;
 var leaderboard = JSON.parse(localStorage.getItem("simonLeaderboard")) || [];
 var soundEnabled = true;
+var newHighScoreAchieved = false;
 
 $("#high-score").text("High Score: " + highScore);
 
@@ -124,13 +125,7 @@ function checkAnswer(currentLevel) {
         highScore = level;
         localStorage.setItem("simonHighScore", highScore);
         $("#high-score").text("High Score: " + highScore);
-        
-        // Trigger confetti for new high score
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
+        newHighScoreAchieved = true;
       }
 
       setTimeout(function () {
@@ -150,6 +145,14 @@ function checkAnswer(currentLevel) {
       $("body").removeClass("game-over");
       $("body").removeClass("shake");
     }, 200);
+
+    if (newHighScoreAchieved) {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+    }
 
     var finalScore = level > 0 ? level - 1 : 0;
     updateLeaderboard(finalScore);
@@ -192,4 +195,5 @@ function startOver() {
   level = 0;
   gamePattern = [];
   started = false;
+  newHighScoreAchieved = false;
 }
