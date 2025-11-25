@@ -34,9 +34,20 @@ $(".close-btn").click(function () {
   $("#leaderboard-modal").fadeOut();
 });
 
+$("#help-btn").click(function () {
+  $("#help-modal").fadeIn();
+});
+
+$(".close-help-btn").click(function () {
+  $("#help-modal").fadeOut();
+});
+
 $(window).click(function (event) {
   if (event.target.id === "leaderboard-modal") {
     $("#leaderboard-modal").fadeOut();
+  }
+  if (event.target.id === "help-modal") {
+    $("#help-modal").fadeOut();
   }
 });
 
@@ -113,6 +124,13 @@ function checkAnswer(currentLevel) {
         highScore = level;
         localStorage.setItem("simonHighScore", highScore);
         $("#high-score").text("High Score: " + highScore);
+        
+        // Trigger confetti for new high score
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
       }
 
       setTimeout(function () {
@@ -126,9 +144,11 @@ function checkAnswer(currentLevel) {
     $("#level-title").text("Game Over, Press any Key to Restart");
 
     $("body").addClass("game-over");
+    $("body").addClass("shake");
 
     setTimeout(function () {
       $("body").removeClass("game-over");
+      $("body").removeClass("shake");
     }, 200);
 
     var finalScore = level > 0 ? level - 1 : 0;
